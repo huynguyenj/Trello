@@ -28,6 +28,12 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "no-restricted-imports": [
+        "error",
+        {
+          "patterns": ["@mui/*/*/*"]
+        }
+      ],
       'no-console': 1,
       'no-lonely-if': 1,
       'no-trailing-spaces':1,
