@@ -45,7 +45,6 @@ export default [
       'semi': ['warn','never'],
       'quotes': ['warn','single'],
       'array-bracket-spacing': 1,
-      'linebreak-style': 1,
       'no-unexpected-multiline':'warn',
       'keyword-spacing': 1,
       'comma-dangle':1,
