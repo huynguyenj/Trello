@@ -1,6 +1,5 @@
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
-import { useColorScheme } from '@mui/material/styles' // ✅ Correct import
-import { useState } from 'react'
+import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { useColorScheme } from '@mui/material/styles'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness'
@@ -23,9 +22,9 @@ function ModeSelection() {
         label="Mode"
       >
         <MenuItem value='light'>
-          <Box sx={{ display:'flex', alignItems:'center', gap:1 }}>
+          <div style={{ display:'flex', alignItems:'center', gap:1 }}>
             <LightModeIcon/> Light
-          </Box>
+          </div>
         </MenuItem>
         <MenuItem value='dark'>
           <Box sx={{ display:'flex', alignItems:'center', gap:1 }}>
@@ -41,34 +40,36 @@ function ModeSelection() {
     </FormControl>
   )
 }
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme()
-  return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light')
-      }}
-    >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
-  )
-}
+
 
 function App() {
-  const [count, setCount] = useState(0)
   return (
-    <>
-      <ModeSelection/>
-      <ModeToggle />
-      <h1>Hello</h1>
-      <Button variant="contained" onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </Button>
-      <Typography variant="body2" color="text.secondary">
-        Test theme
-      </Typography>
-    </>
+    <Container disableGutters maxWidth={false} sx={{ height:'100vh' }}>
+      <Box sx={{
+        width: '100%',
+        height:(theme) => theme.trelloCustom.appBarHeight,
+        backgroundColor:'primary.light',
+        display:'flex',
+        alignItems:'center' }}>
+        <ModeSelection/>
+      </Box>
+      <Box sx={{
+        width: '100%',
+        height:(theme) => theme.trelloCustom.boardBarHeight,
+        backgroundColor:'primary.dark',
+        display:'flex',
+        alignItems:'center' }}>
+          Board Bar
+      </Box>
+      <Box sx={{
+        width: '100%',
+        height:(theme) => `calc(100vh - ${theme.trelloCustom.appBarHeight} - ${theme.trelloCustom.boardBarHeight})`,
+        backgroundColor:'primary.main',
+        display:'flex',
+        alignItems:'center' }}>
+          Box content
+      </Box>
+    </Container>
   )
 }
 
